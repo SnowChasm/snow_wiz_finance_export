@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
@@ -13,5 +14,11 @@
   "dependencies": {
     "dayjs": "^1.11.13",
     "xlsx": "^0.18.5"
+  },
+  "pkg": {
+    "targets": [
+      "node16-win-x64"
+    ],
+    "output": "wiz_excel_tool"
   }
 }

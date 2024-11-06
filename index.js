@@ -6,6 +6,16 @@ const dayjs = require("dayjs");
 const originFolder = path.join(__dirname, "origin");
 const resultFolder = path.join(__dirname, "result");
 
+// 检查 origin 文件夹是否存在，如果不存在则创建
+if (!fs.existsSync(originFolder)) {
+  fs.mkdirSync(originFolder);
+}
+
+// 检查 result 文件夹是否存在，如果不存在则创建
+if (!fs.existsSync(resultFolder)) {
+  fs.mkdirSync(resultFolder);
+}
+
 fs.readdir(originFolder, (err, files) => {
   if (err) {
     console.error("无法读取 origin 文件夹:", err);
