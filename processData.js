@@ -125,13 +125,18 @@ function processData(excelData) {
   });
 
   // 使用 xlsx.js 导出数据
-  const newWorkbook = xlsx.utils.book_new();
-  Object.keys(result).forEach((sheetName) => {
-    const newSheet = xlsx.utils.json_to_sheet(result[sheetName]);
-    xlsx.utils.book_append_sheet(newWorkbook, newSheet, sheetName);
-  });
+  try {
+    const newWorkbook = xlsx.utils.book_new();
+    Object.keys(result).forEach((sheetName) => {
+      const newSheet = xlsx.utils.json_to_sheet(result[sheetName]);
+      xlsx.utils.book_append_sheet(newWorkbook, newSheet, sheetName);
+    });
 
-  return newWorkbook;
+    return newWorkbook;
+  } catch (error) {
+    console.log("导出失败", error);
+    return null;
+  }
 }
 
 module.exports = processData;
