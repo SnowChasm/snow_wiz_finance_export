@@ -6,6 +6,8 @@ const dayjs = require("dayjs");
 const originFolder = path.join(__dirname, "origin");
 const resultFolder = path.join(__dirname, "result");
 
+const taxRate = 0.01;
+
 // 检查 origin 文件夹是否存在，如果不存在则创建
 if (!fs.existsSync(originFolder)) {
   fs.mkdirSync(originFolder);
@@ -81,7 +83,7 @@ function processFiles(files) {
         const daysDiff = endDate.diff(startDate, "day") + 1;
 
         row["总服务器天数"] = daysDiff;
-        row["应交税费"] = (row["实收金额"] / 1.06) * 0.06;
+        row["应交税费"] = (row["实收金额"] / (1 + taxRate)) * taxRate;
         row["税后金额"] = row["实收金额"] - row["应交税费"];
         row["DRR"] = row["税后金额"] / daysDiff;
 
